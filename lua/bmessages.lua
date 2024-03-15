@@ -9,6 +9,7 @@ local function with_defaults(options)
 
 	local defaults = {
 		timer_interval = 1000,
+		file_type = "bmessages",
 		split_type = "vsplit",
 		buffer_name = "bmessages_buffer",
 		split_size_vsplit = nil,
@@ -81,6 +82,8 @@ local function create_raw_buffer(options)
 	vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
 	vim.api.nvim_set_option_value("bl", false, { buf = bufnr })
 	vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
+	vim.print(vim.inspect(options))
+	vim.api.nvim_set_option_value("filetype", options.file_type, { buf = bufnr })
 end
 
 local function run_vim_cmd(options)
